@@ -1,0 +1,17 @@
+﻿@page "/counter"
+@using Fluxor
+@rendermode InteractiveWebAssembly
+@inject IDispatcher Dispatcher
+
+<PageTitle>Party</PageTitle>
+
+<FluxorRP.Client.Component.Character/><FluxorRP.Client.Component.DiceLauncher/><FluxorRP.Client.Component.Monster/>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}

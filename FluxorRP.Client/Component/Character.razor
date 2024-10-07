@@ -1,0 +1,9 @@
+﻿@page "/Char"
+@using Fluxor
+@using FluxorRP.Client.Class
+@rendermode InteractiveWebAssembly
+@inject IState<CharacterState> CharacterState
+
+<h3>Feuille de Personnage</h3>
+<p>Points de Vie: @CharacterState.Value.Health</p>
+<p>Force: @CharacterState.Value.Strength</p>

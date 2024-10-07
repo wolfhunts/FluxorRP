@@ -1,0 +1,18 @@
+﻿@page "/roll-dice"
+@using Fluxor
+@using static FluxorRP.Client.Action.Action
+@rendermode InteractiveWebAssembly
+@inject IDispatcher Dispatcher
+
+<h3>Lance un Dé</h3>
+<button @onclick="RollDice">Lancer le Dé</button>
+
+@code {
+    private Random random = new Random();
+
+    private void RollDice()
+    {
+        int rollResult = random.Next(1, 21); // Un dé à 20 faces
+        Dispatcher.Dispatch(new RollDiceAction(rollResult));
+    }
+}
