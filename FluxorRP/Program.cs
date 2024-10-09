@@ -11,8 +11,8 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddFluxor(options =>
 {
-    options.ScanAssemblies(typeof(Program).Assembly);
-    options.UseReduxDevTools();
+    options.ScanAssemblies(typeof(Program).Assembly, typeof(FluxorRP.Client._Imports).Assembly);
+	options.UseReduxDevTools();
 });
 var app = builder.Build();
 
