@@ -9,6 +9,7 @@
     public class MonsterState
     {
         public int Health { get; set; }
+        public int Domage { get; set; }
     }
 
 }

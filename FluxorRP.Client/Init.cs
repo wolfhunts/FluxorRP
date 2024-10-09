@@ -1,5 +1,6 @@
 ﻿using Fluxor;
 using FluxorRP.Client.Class;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace FluxorRP.Client
 {
@@ -15,7 +16,7 @@ namespace FluxorRP.Client
     public class MonsterFeature : Feature<MonsterState>
     {
         public override string GetName() => "Monster";
-        protected override MonsterState GetInitialState() => new MonsterState { Health = 50 };
+        protected override MonsterState GetInitialState() => new MonsterState { Health = 50 , Domage=10 };
     }
 
 }

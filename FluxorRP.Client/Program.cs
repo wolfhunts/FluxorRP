@@ -1,7 +1,6 @@
 using Fluxor;
 using Fluxor.Blazor.Web.ReduxDevTools;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using FluxorRP.Client.Class;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
