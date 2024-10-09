@@ -5,14 +5,27 @@
 @inject IDispatcher Dispatcher
 
 <h3>Lance un Dé</h3>
+@if (rollResult > 0)
+{
+    <img src="@GetDiceImage(rollResult)" alt="Dé résultat" style="width:100px; height:100px;" />
+}
+<p>Résultat du dé : @rollResult</p>
 <button @onclick="RollDice">Lancer le Dé</button>
 
 @code {
+    private int rollResult = 0; // Résultat du lancer du dé
     private Random random = new Random();
 
     private void RollDice()
     {
-        int rollResult = random.Next(1, 21); // Un dé à 20 faces
+        int rollResult = random.Next(1, 6); // Un dé à 6 faces
         Dispatcher.Dispatch(new RollDiceAction(rollResult));
     }
+
+    private string GetDiceImage(int result)
+    {
+        return $"images/dice/dice{result}.png"; // Assurez-vous que les images sont dans wwwroot/images/dice/
+    }
 }
+
+

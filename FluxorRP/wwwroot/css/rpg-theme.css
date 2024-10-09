@@ -1,0 +1,101 @@
+﻿/* Corps de la page */
+body {
+    background-color: #f5f0dc; /* Couleur papier parchemin */
+    background-image: url('/images/old-paper-texture.jpg'); /* Image de fond pour donner une texture */
+    background-size: cover;
+    font-family: 'Cinzel', serif; /* Police avec un style ancien, type calligraphique */
+    color: #4e3b31; /* Couleur brun ancien pour le texte */
+    margin: 0;
+    padding: 20px;
+}
+
+/* Titres */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cinzel Decorative', serif;
+    color: #3b2718;
+    text-shadow: 1px 1px 2px #000000;
+    border-bottom: 2px solid #3b2718; /* Ligne de séparation pour un style parchemin */
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+/* Bouton de style ancien */
+button {
+    background-color: #8c6d43; /* Couleur cuir vieilli */
+    color: #f5f0dc;
+    font-family: 'Cinzel', serif;
+    border: 2px solid #4e3b31; /* Bordure sombre pour rappeler l’ancien */
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px #3b2718;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+    /* Effet au survol du bouton */
+    button:hover {
+        background-color: #a57b55;
+    }
+
+    /* Effet lors du clic sur le bouton */
+    button:active {
+        background-color: #6f5137;
+        box-shadow: 0 2px #3b2718;
+        transform: translateY(2px);
+    }
+
+/* Paragraphes et contenu texte */
+p {
+    font-family: 'PT Serif', serif;
+    line-height: 1.6;
+    font-size: 18px;
+    color: #4e3b31;
+}
+
+/* Conteneur général pour créer un cadre vieilli */
+.container {
+    background-color: rgba(245, 240, 220, 0.8); /* Transparence pour faire ressortir le fond texture */
+    border: 2px solid #8c6d43;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Images pour le dé ou autres composants */
+img {
+    border: 3px solid #4e3b31; /* Bordure sombre pour faire ressortir l'image */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+/* Style spécifique pour les dés ou objets importants */
+.dice {
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+}
+
+/* Liens dans le style de jeu de rôle */
+a {
+    color: #4e3b31;
+    text-decoration: none;
+    border-bottom: 2px solid #4e3b31;
+}
+
+    a:hover {
+        color: #a57b55;
+        border-bottom: 2px solid #a57b55;
+    }
+@keyframes rollDice {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+img {
+    animation: rollDice 1s ease-out;
+}
