@@ -2,8 +2,9 @@
 {
     public static class Action
     {
-        public record RollDiceAction(int RollResult);
+        public record RollDiceAction();
+        public record RollDiceActionResult(int roll);
         public record MonsterAttackAction(int Damage);
-
+        
     }
 }

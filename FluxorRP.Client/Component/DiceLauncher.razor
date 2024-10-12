@@ -1,28 +1,48 @@
 ﻿@page "/roll-dice"
 @using Fluxor
+@using FluxorRP.Client.Class
 @using static FluxorRP.Client.Action.Action
 @rendermode InteractiveWebAssembly
+@inject IState<CharacterState> CharacterState
 @inject IDispatcher Dispatcher
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
 <h3>Lance un Dé</h3>
-@if (rollResult > 0)
+
+@if (CharacterState.Value.loading)
 {
-    <img src="@GetDiceImage(rollResult)" alt="Dé résultat" style="width:100px; height:100px;" />
+    <img src="@GetDiceImage(Rolling())" alt="Dé résultat" style="width:100px; height:100px;" />
 }
-<p>Résultat du dé : @rollResult</p>
+else
+{
+    @if (CharacterState.Value.lastRoll != 0)
+    {
+        <img src="@GetDiceImage(CharacterState.Value.lastRoll)" alt="Dé résultat" style="width:100px; height:100px;" />
+    }
+}
+
+
+<p>Résultat du dé : @CharacterState.Value.lastRoll</p>
 <button @onclick="RollDice">Lancer le Dé</button>
 
 @code {
-    private int rollResult = 0; // Résultat du lancer du dé
+    // private int rollResult = 0; // Résultat du lancer du dé
     private Random random = new Random();
+    private int rolling = 0;
 
     private void RollDice()
     {
-        rollResult = 0;
-        rollResult = random.Next(1, 6); // Un dé à 6 faces
-        Dispatcher.Dispatch(new RollDiceAction(rollResult)); 
-        Console.WriteLine($"Dé lancé : {rollResult}");
+        // rollResult = 0;
+        rolling = random.Next(1, 6); // Un dé à 6 faces
+        Dispatcher.Dispatch(new RollDiceAction()); 
+        // Console.WriteLine($"Dé lancé : {rollResult}");
+    }
+
+    private int Rolling()
+    {
+        this.rolling = random.Next(1, 6);
+        
+        return this.rolling;
     }
 
     private string GetDiceImage(int result)

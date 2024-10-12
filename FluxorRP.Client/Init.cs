@@ -10,7 +10,7 @@ namespace FluxorRP.Client
     public class CharacterFeature : Feature<CharacterState>
     {
         public override string GetName() => "Character";
-        protected override CharacterState GetInitialState() => new CharacterState(100,10);
+        protected override CharacterState GetInitialState() => new CharacterState(100, 10, 0, false);
     }
 
     public class MonsterFeature : Feature<MonsterState>

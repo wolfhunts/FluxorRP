@@ -9,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://www.dejete.com") });
+
 builder.Services.AddFluxor(options =>
 {
     options.ScanAssemblies(typeof(Program).Assembly, typeof(FluxorRP.Client._Imports).Assembly).UseReduxDevTools();
