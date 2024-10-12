@@ -10,10 +10,7 @@ namespace FluxorRP.Client.Reducer
         [ReducerMethod]
         public CharacterState ReduceRollDice(CharacterState state, RollDiceAction action)
         {
-            return new CharacterState() {
-                Health = state.Health,
-                Strength = state.Strength + action.RollResult
-            };
+            return new CharacterState(state.Health,state.Strength + action.RollResult);
         }
     }
 
@@ -22,10 +19,7 @@ namespace FluxorRP.Client.Reducer
         [ReducerMethod]
         public MonsterState ReduceMonsterAttack(MonsterState state, MonsterAttackAction action)
         {
-            return new MonsterState() {
-                Domage = state.Domage,
-                Health = state.Health - action.Damage 
-            };
+            return new MonsterState(state.Health - action.Damage, state.Domage);
         }
     }
 

@@ -1,15 +1,7 @@
 ﻿namespace FluxorRP.Client.Class
 {
-    public class CharacterState
-    {
-        public int Health { get; set; }
-        public int Strength { get; set; }
-    }
+    public record CharacterState(int Health, int Strength);
 
-    public class MonsterState
-    {
-        public int Health { get; set; }
-        public int Domage { get; set; }
-    }
+    public record MonsterState(int Health, int Domage);
 
 }
