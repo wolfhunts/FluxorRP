@@ -3,6 +3,7 @@
 @using static FluxorRP.Client.Action.Action
 @rendermode InteractiveWebAssembly
 @inject IDispatcher Dispatcher
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
 <h3>Lance un Dé</h3>
 @if (rollResult > 0)

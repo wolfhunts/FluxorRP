@@ -5,6 +5,7 @@
 @inject IDispatcher Dispatcher
 @inject IState<MonsterState> MonsterState
 @rendermode InteractiveWebAssembly
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
 <h3>Monstre</h3>
 <p>Points de Vie: @MonsterState.Value.Health</p>

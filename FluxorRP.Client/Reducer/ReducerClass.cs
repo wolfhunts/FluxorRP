@@ -8,20 +8,24 @@ namespace FluxorRP.Client.Reducer
     public class CharacterReducer
     {
         [ReducerMethod]
-        public static CharacterState ReduceRollDice(CharacterState state, RollDiceAction action)
+        public CharacterState ReduceRollDice(CharacterState state, RollDiceAction action)
         {
-            state.Strength = state.Strength + action.RollResult;
-            return state;
+            return new CharacterState() {
+                Health = state.Health,
+                Strength = state.Strength + action.RollResult
+            };
         }
     }
 
     public class MonsterReducer
     {
         [ReducerMethod]
-        public static MonsterState ReduceMonsterAttack(MonsterState state, MonsterAttackAction action)
+        public MonsterState ReduceMonsterAttack(MonsterState state, MonsterAttackAction action)
         {
-            state.Health = state.Health - action.Damage ;
-            return state;
+            return new MonsterState() {
+                Domage = state.Domage,
+                Health = state.Health - action.Damage 
+            };
         }
     }
 
