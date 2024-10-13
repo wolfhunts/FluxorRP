@@ -1,12 +1,13 @@
 ﻿@page "/"
 @using Fluxor
-@using FluxorRP.Client.Class
 @rendermode InteractiveWebAssembly
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
 <PageTitle>Party</PageTitle>
 
-<FluxorRP.Client.Component.Character/><FluxorRP.Client.Component.DiceLauncher/><FluxorRP.Client.Component.Monster/>
+<FluxorRP.Client.Component.Character/>
+<FluxorRP.Client.Component.DiceLauncher/>
+<FluxorRP.Client.Component.Monster/>
 
 @code {
     private int currentCount = 0;

@@ -1,7 +1,7 @@
 ﻿@page "/Monster"
 @using Fluxor
-@using FluxorRP.Client.Class
-@using static FluxorRP.Client.Action.Action
+@using FluxorRP.Shared.Store
+@using FluxorRP.Shared.Store.MonsterUseCase
 @inject IDispatcher Dispatcher
 @inject IState<MonsterState> MonsterState
 @rendermode InteractiveWebAssembly

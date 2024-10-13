@@ -1,7 +1,7 @@
 ﻿@page "/roll-dice"
 @using Fluxor
-@using FluxorRP.Client.Class
-@using static FluxorRP.Client.Action.Action
+@using FluxorRP.Shared.Store
+@using FluxorRP.Shared.Store.CharacterUseCase
 @rendermode InteractiveWebAssembly
 @inject IState<CharacterState> CharacterState
 @inject IDispatcher Dispatcher

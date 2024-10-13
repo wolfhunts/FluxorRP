@@ -8,7 +8,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https:/
 
 builder.Services.AddFluxor(options =>
 {
-    options.ScanAssemblies(typeof(Program).Assembly);
+    options.ScanAssemblies(typeof(Program).Assembly, typeof(FluxorRP.Shared.Store.MonsterAttackAction).Assembly);
     options.UseReduxDevTools();
 });
 
