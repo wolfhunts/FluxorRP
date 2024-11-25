@@ -13,6 +13,6 @@
 @code {
     private void LaunchAttack()
     {
-        //this.AttackMonster.InvokeAsync(new Random().Next(5, 15));
+        this.Dispatcher.Dispatch(new MonsterLaunchAttackAction());
     }
 }
