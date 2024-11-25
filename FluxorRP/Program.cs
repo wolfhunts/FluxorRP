@@ -14,11 +14,8 @@ builder.Services.AddFluxor(options =>
 {
     options.ScanAssemblies(
                     typeof(Program).Assembly,
+                    typeof(FluxorRP.Shared.Store.Dice.DiceRollAction).Assembly,
                     typeof(FluxorRP.Client._Imports).Assembly);
-    /*
-     * ,
-                    typeof(FluxorRP.Shared.Store.MonsterAttackAction).Assembly
-     */
     options.UseReduxDevTools();
 });
 var app = builder.Build();

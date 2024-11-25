@@ -1,8 +1,10 @@
 ﻿@page "/"
 @using Fluxor
+@using FluxorRP.Shared.Store.Dice
 @rendermode InteractiveWebAssembly
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 @inject NavigationManager navigationManager
+@inject IState<DiceState> DiceState
 
 <PageTitle>Party</PageTitle>
 
@@ -12,7 +14,7 @@
             <FluxorRP.Client.Component.Character CharacterHealth="Health" />
     </div>
     <div class="column">
-            <FluxorRP.Client.Component.DiceLauncher DiceValue="@UpdateDiceValue" />
+            <FluxorRP.Client.Component.DiceLauncher />
     </div>
     <div class="column">
             <FluxorRP.Client.Component.Monster MonsterHealth="MonsterHealth" AttackMonster="@AttackMonster" />

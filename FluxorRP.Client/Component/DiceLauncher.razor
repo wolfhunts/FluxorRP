@@ -1,28 +1,27 @@
 ﻿@page "/roll-dice"
 @using Fluxor
+@using FluxorRP.Shared.Store.Dice
 @rendermode InteractiveWebAssembly
 @inject IDispatcher Dispatcher
+@inject IState<DiceState> DiceState
+
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
 <h3>Lance un Dé</h3>
 
 <div>
-    <img src="@GetDiceImage(this.dice)" />
+    @if (this.DiceState.Value.currentValue > 0)
+    {
+        <img class="dice" src="@GetDiceImage(this.DiceState.Value.currentValue)" />
+    }
 </div>
-<p>Résultat du dé : @dice</p>
+<p>Résultat du dé : @this.DiceState.Value.currentValue</p>
 <button @onclick="RollDice">Lancer le Dé</button>
 
 @code {
-    [Parameter]
-    public EventCallback<int> DiceValue { get; set; }
-
-    private Random random = new Random();
-    private int dice = 0;
-
     private void RollDice()
     {
-        this.dice = random.Next(1, 6);
-        this.DiceValue.InvokeAsync(this.dice);
+        Dispatcher.Dispatch(new DiceRollAction());
     }
 
     private string GetDiceImage(int result)
