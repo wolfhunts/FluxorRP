@@ -1,14 +1,14 @@
 ﻿@page "/"
 @using Fluxor
-@using FluxorRP.Shared.Store.Dice
+@using FluxorRP.Shared.Store.Board
 @rendermode InteractiveWebAssembly
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 @inject NavigationManager navigationManager
-@inject IState<DiceState> DiceState
+@inject IState<BoardState> BoardState
 
 <PageTitle>Party</PageTitle>
 
-@if (!EndOfGame)
+@if (!BoardState.Value.end)
 {<div class="columns-container">
     <div class="column">
             <FluxorRP.Client.Component.Character />
@@ -30,13 +30,13 @@
     </div>
 
     <div>
-        @if (this.MonsterHealth > 0)
+        @if (BoardState.Value.isPlayerWinner)
         {
-            <strong>Monster Wins</strong>
+            <strong>Player Wins</strong>
         }
         else
         {
-            <strong>Player Wins</strong>
+            <strong>Monster Wins</strong>
         }
     </div>
     <div>
@@ -47,27 +47,9 @@
 
 
 @code {
-    public int Health { get; set; } = 0;
-    public int MonsterHealth { get; set; } = 100;
-    public bool EndOfGame { get; set; } = false;
 
     private void Restart()
     {
         navigationManager.NavigateTo(navigationManager.Uri, true);
-    }
-
-    private void UpdateDiceValue(int newValue)
-    {
-        this.Health += newValue;
-
-        Console.WriteLine(newValue.ToString());
-    }
-
-    private void AttackMonster(int attachValue)
-    {
-        this.MonsterHealth -= attachValue;
-        this.Health -= attachValue / 2;
-
-        this.EndOfGame = this.MonsterHealth < 0 || this.Health < 0;
     }
 }

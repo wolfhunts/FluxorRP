@@ -7,6 +7,6 @@ namespace FluxorRP.Shared.Store.Monster
         public override string GetName() => "MonsterHealth";
 
         protected override MonsterState GetInitialState()
-            => new MonsterState(health: 200);
+            => new MonsterState(health: 100);
     }
 }
