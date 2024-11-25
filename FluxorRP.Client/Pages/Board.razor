@@ -7,10 +7,20 @@
 <PageTitle>Party</PageTitle>
 
 @if (!EndOfGame)
-{
-    <FluxorRP.Client.Component.Character CharacterHealth="Health"/>
-    <FluxorRP.Client.Component.DiceLauncher DiceValue="@UpdateDiceValue"/>
-    <FluxorRP.Client.Component.Monster MonsterHealth="MonsterHealth" AttackMonster="@AttackMonster"/>
+{<div class="columns-container">
+    <div class="column">
+            <FluxorRP.Client.Component.Character CharacterHealth="Health" />
+    </div>
+    <div class="column">
+            <FluxorRP.Client.Component.DiceLauncher DiceValue="@UpdateDiceValue" />
+    </div>
+    <div class="column">
+            <FluxorRP.Client.Component.Monster MonsterHealth="MonsterHealth" AttackMonster="@AttackMonster" />
+    </div>
+</div>
+   
+    
+   
 } else
 {
     <div>

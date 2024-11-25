@@ -75,6 +75,31 @@ img {
     margin: 10px;
 }
 
+.columns-container {
+    display: flex;
+    justify-content: space-between; /* Espace entre les colonnes */
+    gap: 16px; /* Espacement entre les colonnes */
+    padding: 16px; /* Espacement interne */
+    background-color: #f8f1e4; /* Couleur de fond type parchemin */
+    border: 1px solid #c0a080; /* Bordure décorative */
+    border-radius: 8px; /* Coins arrondis */
+}
+
+.column {
+    flex: 1; /* Taille égale pour chaque colonne */
+    text-align: center; /* Centrer le contenu */
+    background-color: #fff; /* Couleur de fond des colonnes */
+    padding: 16px;
+    border: 1px solid #d4c5a3; /* Bordure légère */
+    border-radius: 4px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Ombre pour effet de relief */
+}
+
+    .column h3 {
+        font-family: 'Times New Roman', serif; /* Typo style ancien */
+        color: #6b4f2b; /* Couleur marron */
+    }
+
 /* Liens dans le style de jeu de rôle */
 a {
     color: #4e3b31;
