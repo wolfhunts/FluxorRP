@@ -1,22 +1,18 @@
 ﻿@page "/Monster"
 @using Fluxor
+@using FluxorRP.Shared.Store.Monster
 @inject IDispatcher Dispatcher
 @rendermode InteractiveWebAssembly
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
+@inject IState<MonsterState> MonsterState
 
 <h3>Monstre</h3>
-<p>Points de Vie: @MonsterHealth</p>
+<p>Points de Vie: @MonsterState.Value.health</p>
 <button @onclick="LaunchAttack">Attaquer le Monstre</button>
 
 @code {
-    [Parameter]
-    public int MonsterHealth { get; set; } = 100;
-
-    [Parameter]
-    public EventCallback<int> AttackMonster { get; set; }
-
     private void LaunchAttack()
     {
-        this.AttackMonster.InvokeAsync(new Random().Next(5, 15));
+        //this.AttackMonster.InvokeAsync(new Random().Next(5, 15));
     }
 }

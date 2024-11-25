@@ -1,15 +1,15 @@
 ﻿@page "/Char"
 @using Fluxor
+@using FluxorRP.Shared.Store.Character
 @rendermode InteractiveWebAssembly
 @inject IDispatcher Dispatcher
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
+@inject IState<CharacterState> CharacterState
 
 <h3>Feuille de Personnage</h3>
-@* <p>Points de Vie: @CharacterState.Value.Health</p>
-<p>Force: @CharacterState.Value.Strength</p> *@
-<p>@CharacterHealth</p>
+<p>Points de Vie: @CharacterState.Value.health</p>
+<p>Force: @CharacterState.Value.strength</p>
+
 
 @code {
-    [Parameter]
-    public int CharacterHealth { get; set; }
 }

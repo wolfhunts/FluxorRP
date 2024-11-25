@@ -7,12 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fluxor" Version="6.1.0" />
-    <PackageReference Include="Fluxor.Blazor.Web" Version="6.1.0" />
+    <Compile Remove="Models\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="Models\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <PackageReference Include="Fluxor" Version="6.1.0" />
+    <PackageReference Include="Fluxor.Blazor.Web" Version="6.1.0" />
   </ItemGroup>
 
 </Project>
