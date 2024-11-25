@@ -11,4 +11,9 @@
     <PackageReference Include="Fluxor.Blazor.Web" Version="6.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Store\" />
+  </ItemGroup>
+
 </Project>

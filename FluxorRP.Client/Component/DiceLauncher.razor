@@ -1,53 +1,38 @@
 ﻿@page "/roll-dice"
 @using Fluxor
-@using FluxorRP.Shared.Store
-@using FluxorRP.Shared.Store.CharacterUseCase
 @rendermode InteractiveWebAssembly
-@inject IState<CharacterState> CharacterState
 @inject IDispatcher Dispatcher
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 
 <h3>Lance un Dé</h3>
 
-@if (CharacterState.Value.loading)
-{
-    <img src="@GetDiceImage(Rolling())" alt="Dé résultat" style="width:100px; height:100px;" />
-}
-else
-{
-    @if (CharacterState.Value.lastRoll != 0)
-    {
-        <img src="@GetDiceImage(CharacterState.Value.lastRoll)" alt="Dé résultat" style="width:100px; height:100px;" />
-    }
-}
-
-
-<p>Résultat du dé : @CharacterState.Value.lastRoll</p>
+<div>
+    <img src="@GetDiceImage(this.dice)" />
+</div>
+<p>Résultat du dé : @dice</p>
 <button @onclick="RollDice">Lancer le Dé</button>
 
 @code {
-    // private int rollResult = 0; // Résultat du lancer du dé
+    [Parameter]
+    public EventCallback<int> DiceValue { get; set; }
+
     private Random random = new Random();
-    private int rolling = 0;
+    private int dice = 0;
 
     private void RollDice()
     {
-        // rollResult = 0;
-        rolling = random.Next(1, 6); // Un dé à 6 faces
-        Dispatcher.Dispatch(new RollDiceAction()); 
-        // Console.WriteLine($"Dé lancé : {rollResult}");
-    }
-
-    private int Rolling()
-    {
-        this.rolling = random.Next(1, 6);
-        
-        return this.rolling;
+        this.dice = random.Next(1, 6);
+        this.DiceValue.InvokeAsync(this.dice);
     }
 
     private string GetDiceImage(int result)
     {
-        return $"images/dice/dice{result}.png"; // Assurez-vous que les images sont dans wwwroot/images/dice/
+        if (result > 0)
+        {
+            return $"images/dice/dice{result}.png";
+        }
+
+        return string.Empty;
     }
 }
 

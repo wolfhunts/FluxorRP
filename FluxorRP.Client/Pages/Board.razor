@@ -1,0 +1,61 @@
+﻿@page "/"
+@using Fluxor
+@rendermode InteractiveWebAssembly
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+@inject NavigationManager navigationManager
+
+<PageTitle>Party</PageTitle>
+
+@if (!EndOfGame)
+{
+    <FluxorRP.Client.Component.Character CharacterHealth="Health"/>
+    <FluxorRP.Client.Component.DiceLauncher DiceValue="@UpdateDiceValue"/>
+    <FluxorRP.Client.Component.Monster MonsterHealth="MonsterHealth" AttackMonster="@AttackMonster"/>
+} else
+{
+    <div>
+        <strong>end of game</strong>
+    </div>
+
+    <div>
+        @if (this.MonsterHealth > 0)
+        {
+            <strong>Monster Wins</strong>
+        }
+        else
+        {
+            <strong>Player Wins</strong>
+        }
+    </div>
+    <div>
+        <img src="images/gameover.gif" />
+    </div>
+    <button @onclick="Restart">Jouer à nouveau</button>
+}
+
+
+@code {
+    public int Health { get; set; } = 0;
+    public int MonsterHealth { get; set; } = 100;
+    public bool EndOfGame { get; set; } = false;
+
+    private void Restart()
+    {
+        navigationManager.NavigateTo(navigationManager.Uri, true);
+    }
+
+    private void UpdateDiceValue(int newValue)
+    {
+        this.Health += newValue;
+
+        Console.WriteLine(newValue.ToString());
+    }
+
+    private void AttackMonster(int attachValue)
+    {
+        this.MonsterHealth -= attachValue;
+        this.Health -= attachValue / 2;
+
+        this.EndOfGame = this.MonsterHealth < 0 || this.Health < 0;
+    }
+}
