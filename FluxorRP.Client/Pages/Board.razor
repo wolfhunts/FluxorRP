@@ -10,19 +10,30 @@
 
 @if (!EndOfGame)
 {<div class="columns-container">
-    <div class="column">
-            <FluxorRP.Client.Component.Character />
+        @if (isCharChoose && isMonsterChoose)
+        {
+            <div class="column">
+                <FluxorRP.Client.Component.Character />
+            </div>
+            <div class="column">
+                <FluxorRP.Client.Component.DiceLauncher />
+            </div>
+            <div class="column">
+                <FluxorRP.Client.Component.Monster />
+            </div>
+        }
+        else
+        {
+            <div class="column">
+                </div>
+            <div class="column">
+
+            </div>
+        }
     </div>
-    <div class="column">
-            <FluxorRP.Client.Component.DiceLauncher />
-    </div>
-    <div class="column">
-            <FluxorRP.Client.Component.Monster />
-    </div>
-</div>
-   
-    
-   
+
+
+
 } else
 {
     <div>
@@ -47,6 +58,8 @@
 
 
 @code {
+    public bool isCharChoose { get; set; } = false;
+    public bool isMonsterChoose { get; set; } = false;
     public int Health { get; set; } = 0;
     public int MonsterHealth { get; set; } = 100;
     public bool EndOfGame { get; set; } = false;
