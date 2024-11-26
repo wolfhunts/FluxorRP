@@ -1,6 +1,7 @@
 using Fluxor;
 using Fluxor.Blazor.Web.ReduxDevTools;
 using FluxorRP.Components;
+using FluxorRP.Shared.Store.CaptainSwordee;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,11 +13,15 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https:/
 
 builder.Services.AddFluxor(options =>
 {
+
     options.ScanAssemblies(
                     typeof(Program).Assembly,
                     typeof(FluxorRP.Shared.Store.Dice.DiceRollAction).Assembly,
                     typeof(FluxorRP.Client._Imports).Assembly);
+    
     options.UseReduxDevTools();
+    options.AddMiddleware<GifMiddleware>();
+
 });
 var app = builder.Build();
 
