@@ -6,6 +6,8 @@
 @rendermode InteractiveWebAssembly
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 @inject NavigationManager navigationManager
+@inject IDispatcher Dispatcher
+
 @inject IState<DiceState> DiceState
 @inject IState<ListCharacterState> CharactersState
 @inject IState<ListMonsterState> MonstersState
@@ -15,7 +17,7 @@
 
 @if (!EndOfGame)
 {<div class="columns-container">
-       @if (isCharChoose && isMonsterChoose)
+        @if (isCharChoose && isMonsterChoose)
         {
             <div class="column">
                 <FluxorRP.Client.Component.Character />
@@ -33,16 +35,20 @@
                 @foreach (var Character in CharactersState.Value.Characters)
                 {
                     <div class="form-check">
-                        <input class="form-check-check" value="@Character.Id" type="checkbox" @onclick="SelectCharacter"></input>
+                        <input class="form-check-check" value="@Character.Id" type="checkbox" @onclick="() => SelectCharacter(Character.Id)"
+                        checked="@(CharactersState.Value.selectedValue == Character.Id)"
+                        ></input>
                         <label class="form-check-label">@Character.Name</label>
                     </div>
                 }
-                </div>
+            </div>
             <div class="column">
-                 @foreach (var Monster in MonstersState.Value.Monsters)
+                @foreach (var Monster in MonstersState.Value.Monsters)
                 {
                     <div class="form-check">
-                        <input class="form-check-check" value="@Monster.Id" type="checkbox" @onclick="SelectMonster"></input>
+                        <input class="form-check-check" value="@Monster.Id" type="checkbox" @onclick="() => SelectMonster(Monster.Id)"
+                        checked="@(MonstersState.Value.selectedValue == Monster.Id)"
+                        ></input>
                         <label class="form-check-label">@Monster.Name</label>
                     </div>
                 }
@@ -101,10 +107,15 @@
 
         this.EndOfGame = this.MonsterHealth < 0 || this.Health < 0;
     }
-    private void SelectCharacter(){
-
+    private void SelectCharacter(int id)
+    {
+        Dispatcher.Dispatch(new ListCharacterSelectAction(id));
+        isCharChoose = (id != -1 )?true:false;
     }
-    private void SelectMonster(){
+    private void SelectMonster(int id)
+    {
+        Dispatcher.Dispatch(new ListMonsterSelectAction(id));
+        isMonsterChoose = (id != -1) ? true : false;
 
     }
 }

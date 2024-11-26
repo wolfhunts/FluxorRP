@@ -4,12 +4,12 @@ using FluxorRP.Client.Component;
 using FluxorRP.Components;
 using System.Reflection.Metadata;
 using FluxorRP.Shared.Data;
+using Microsoft.EntityFrameworkCore;
+using FluxorRP.Shared.Store.ListCharacter;
+using FluxorRP.Shared.Store.ListMonster;
 var builder = WebApplication.CreateBuilder(args);
 
-using var db = new FluxorRP.Shared.Data.FluxorRPContext();
-
 // Note: This sample requires the database to be created before running.
-Console.WriteLine($"Database path: {db.DbPath}.");
 
 // Create
 //db.Add(new FluxorRP.Shared.Data.Monster { Name = "Gobelin", health=15 });
@@ -26,12 +26,18 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://www.dejete.com") });
+builder.Services.AddDbContext<FluxorRPContext>(options =>
+    options.UseSqlite($"Data Source={Path.Combine(Directory.GetCurrentDirectory(), "FluxorRP.db")}"));
+builder.Services.AddScoped<ListCharacterFeature>();
+builder.Services.AddScoped<ListMonsterFeature>();
 
 builder.Services.AddFluxor(options =>
 {
     options.ScanAssemblies(
                     typeof(Program).Assembly,
                     typeof(FluxorRP.Shared.Store.Dice.DiceRollAction).Assembly,
+                    typeof(FluxorRP.Shared.Store.ListCharacter.ListCharacterSelectAction).Assembly,
+                    typeof(FluxorRP.Shared.Store.ListMonster.ListMonsterSelectAction).Assembly,
                     typeof(FluxorRP.Client._Imports).Assembly);
     options.UseReduxDevTools();
 });

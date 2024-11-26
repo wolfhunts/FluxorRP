@@ -9,16 +9,12 @@ namespace FluxorRP.Shared.Data
 
         public string DbPath { get; }
 
-        public FluxorRPContext()
-        {
-            SQLitePCL.Batteries.Init();
-            
-            DbPath = System.IO.Path.Join(Directory.GetCurrentDirectory(), "FluxorRP.db");
-        }
+       
         public FluxorRPContext(DbContextOptions<FluxorRPContext> options)
         : base(options)
         {
-            SQLitePCL.Batteries.Init();
+            DbPath = System.IO.Path.Join(Directory.GetCurrentDirectory(), "FluxorRP.db");
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

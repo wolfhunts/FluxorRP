@@ -1,4 +1,5 @@
 ﻿using Fluxor;
+using FluxorRP.Shared.Data;
 using FluxorRP.Shared.Store.ListCharacter;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,16 @@ namespace FluxorRP.Shared.Store.ListMonster
 {
     public class ListMonsterFeature : Feature<ListMonsterState>
     {
-        public override string GetName() => "List Monster state";
+        private readonly FluxorRPContext _dbContext;
 
+        public override string GetName() => "List Monster state";
+        public ListMonsterFeature(FluxorRPContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         protected override ListMonsterState GetInitialState()
         {
-            using var db = new FluxorRP.Shared.Data.FluxorRPContext();
-            var listData = new List<Data.Monster>(db.Monsters.ToList());
+            var listData = new List<Data.Monster>(_dbContext.Monsters.ToList());
             return new ListMonsterState(listData, 0);
         }
     }
