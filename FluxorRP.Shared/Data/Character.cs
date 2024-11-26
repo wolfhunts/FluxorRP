@@ -10,9 +10,8 @@ namespace FluxorRP.Shared.Data
     public class Character
     {
         
-        public int Id;
-
-        public string Name;
+        public int Id { get; set; }
+        public string Name { get; set; }
         public int health { get; set; }
         public int strength { get; set; }
     }

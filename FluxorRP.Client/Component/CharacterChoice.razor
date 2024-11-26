@@ -1,4 +1,12 @@
-﻿<h3>CharacterChoice</h3>
+﻿@page "/CharChoice"
+@using Fluxor
+@using FluxorRP.Shared.Store.ListCharacter
+@rendermode InteractiveWebAssembly
+@inject IDispatcher Dispatcher
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+@inject IState<ListCharacterState> CharactersState
+<h3>Choix du personnage</h3>
+
 
 @code {
 

@@ -16,10 +16,9 @@ Console.WriteLine($"Database path: {db.DbPath}.");
 //db.Add(new FluxorRP.Shared.Data.Monster { Name = "Orc", health =30 }); 
 //db.Add(new FluxorRP.Shared.Data.Monster { Name = "Troll", health =45 });
 
-//db.Add(new FluxorRP.Shared.Data.Character { Name = "Jeune aventurier" , health=20 , strength=5});
-//db.Add(new FluxorRP.Shared.Data.Character { Name = "Aventurier confirmé", health = 40, strength = 15 });
-//db.Add(new FluxorRP.Shared.Data.Character { Name = "Vétéran", health = 80, strength = 25 });
-
+//db.Add(new FluxorRP.Shared.Data.Character { Id =1, Name = "Jeune aventurier", health = 20, strength = 5 });
+//db.Add(new FluxorRP.Shared.Data.Character { Id = 2,Name = "Aventurier confirmé", health = 40, strength = 15 });
+//db.Add(new FluxorRP.Shared.Data.Character { Id = 3,Name = "Vétéran", health = 80, strength = 25 });
 //db.SaveChanges();
 
 // Add services to the container.
