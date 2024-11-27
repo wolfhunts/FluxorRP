@@ -11,13 +11,7 @@ namespace FluxorRP.Shared.Store.ListMonster
 {
     public class ListMonsterFeature : Feature<ListMonsterState>
     {
-        //private readonly FluxorRPContext _dbContext;
-
         public override string GetName() => "List Monster state";
-        //public ListMonsterFeature(FluxorRPContext dbContext)
-        //{
-        //    _dbContext = dbContext;
-        //}
         protected override ListMonsterState GetInitialState()
         {
             var listData = new List<Data.Monster>()

@@ -9,10 +9,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://www.dejete.com") });
-builder.Services.AddDbContext<FluxorRPContext>(options =>
-    options.UseSqlite($"Data Source={Path.Combine(Directory.GetCurrentDirectory(), "FluxorRP.db")}"));
-builder.Services.AddScoped<ListCharacterFeature>();
-builder.Services.AddScoped<ListMonsterFeature>();
+
 builder.Services.AddFluxor(options =>
 {
     options.ScanAssemblies(typeof(Program).Assembly, typeof(FluxorRP.Shared.Store.Dice.DiceRollAction).Assembly,

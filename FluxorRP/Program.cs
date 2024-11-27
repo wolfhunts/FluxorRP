@@ -26,11 +26,6 @@ builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://www.dejete.com") });
-builder.Services.AddDbContext<FluxorRPContext>(options =>
-    options.UseSqlite($"Data Source={Path.Combine(Directory.GetCurrentDirectory(), "FluxorRP.db")}"));
-builder.Services.AddScoped<ListCharacterFeature>();
-builder.Services.AddScoped<ListMonsterFeature>();
-
 builder.Services.AddFluxor(options =>
 {
     options.ScanAssemblies(

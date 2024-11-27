@@ -17,7 +17,7 @@
 
 @if (!EndOfGame)
 {<div class="columns-container">
-        @if (isCharChoose && isMonsterChoose)
+        @if (CharactersState.Value.selectedValue != 0 && MonstersState.Value.selectedValue != 0)
         {
             <div class="column">
                 <FluxorRP.Client.Component.Character />
@@ -82,8 +82,6 @@
 
 
 @code {
-    public bool isCharChoose { get; set; } = false;
-    public bool isMonsterChoose { get; set; } = false;
     public int Health { get; set; } = 0;
     public int MonsterHealth { get; set; } = 100;
     public bool EndOfGame { get; set; } = false;
@@ -110,12 +108,9 @@
     private void SelectCharacter(int id)
     {
         Dispatcher.Dispatch(new ListCharacterSelectAction(id));
-        isCharChoose = (id != -1 )?true:false;
     }
     private void SelectMonster(int id)
     {
         Dispatcher.Dispatch(new ListMonsterSelectAction(id));
-        isMonsterChoose = (id != -1) ? true : false;
-
     }
 }
