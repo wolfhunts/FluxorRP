@@ -43,6 +43,7 @@
     }
     else
     {
+        <div class="columns-container">
         <div class="column">
             @foreach (var Character in CharactersState.Value.Characters)
             {
@@ -53,15 +54,16 @@
                 </div>
             }
         </div>
-        <div class="column">
-            @foreach (var Monster in MonstersState.Value.Monsters)
-            {
-                <div class="form-check">
-                    <input class="form-check-check" value="@Monster.Id" type="checkbox" @onclick="() => SelectMonster(Monster.Id)"
-                           checked="@(MonstersState.Value.selectedValue == Monster.Id)"></input>
-                    <label class="form-check-label">@Monster.Name</label>
-                </div>
-            }
+            <div class="column">
+                @foreach (var Monster in MonstersState.Value.Monsters)
+                {
+                    <div class="form-check">
+                        <input class="form-check-check" value="@Monster.Id" type="checkbox" @onclick="() => SelectMonster(Monster.Id)"
+                               checked="@(MonstersState.Value.selectedValue == Monster.Id)"></input>
+                        <label class="form-check-label">@Monster.Name</label>
+                    </div>
+                }
+            </div>
         </div>
     }
 

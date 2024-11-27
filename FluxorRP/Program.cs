@@ -4,11 +4,7 @@ using FluxorRP.Client.Component;
 using FluxorRP.Components;
 using FluxorRP.Shared.Store.CaptainSwordee;
 
-//db.Add(new FluxorRP.Shared.Data.Character { Id =1, Name = "Jeune aventurier", health = 20, strength = 5 });
-//db.Add(new FluxorRP.Shared.Data.Character { Id = 2,Name = "Aventurier confirmé", health = 40, strength = 15 });
-//db.Add(new FluxorRP.Shared.Data.Character { Id = 3,Name = "Vétéran", health = 80, strength = 25 });
-//db.SaveChanges();
-
+var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveWebAssemblyComponents();
@@ -20,8 +16,6 @@ builder.Services.AddFluxor(options =>
     options.ScanAssemblies(
                     typeof(Program).Assembly,
                     typeof(FluxorRP.Shared.Store.Dice.DiceRollAction).Assembly,
-                    typeof(FluxorRP.Shared.Store.ListCharacter.ListCharacterSelectAction).Assembly,
-                    typeof(FluxorRP.Shared.Store.ListMonster.ListMonsterSelectAction).Assembly,
                     typeof(FluxorRP.Client._Imports).Assembly);
     
     options.UseReduxDevTools();
