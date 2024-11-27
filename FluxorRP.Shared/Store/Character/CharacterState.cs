@@ -1,4 +1,4 @@
 ﻿namespace FluxorRP.Shared.Store.Character
 {
-    public record CharacterState(int health, int strength);
+    public record CharacterState(string name, int health, int strength);
 }

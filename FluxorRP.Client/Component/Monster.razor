@@ -7,6 +7,7 @@
 @inject IState<MonsterState> MonsterState
 
 <h3>Monstre</h3>
+<p>Nom : @MonsterState.Value.name</p>
 <p>Points de Vie: @MonsterState.Value.health</p>
 <button @onclick="LaunchAttack">Attaquer le Monstre</button>
 

@@ -8,6 +8,6 @@ namespace FluxorRP.Shared.Store.Character
             => "ChracterHealth";
 
         protected override CharacterState GetInitialState()
-            => new CharacterState(health: 10, strength: 5);
+            => new CharacterState(name: "Jd", health: 10, strength: 5);
     }
 }

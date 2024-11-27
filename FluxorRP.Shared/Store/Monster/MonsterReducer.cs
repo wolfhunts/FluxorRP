@@ -9,5 +9,8 @@ namespace FluxorRP.Shared.Store.Monster
         {
             return state with { health = state.health - action.Point };
         }
+        [ReducerMethod]
+        public static MonsterState LoadMonster(MonsterState state, MonsterLoadSelectedAction action) 
+            => state with { health = action.Health, name = action.Name };
     }
 }

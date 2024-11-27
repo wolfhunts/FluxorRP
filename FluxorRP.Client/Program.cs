@@ -2,6 +2,7 @@ using Fluxor;
 using Fluxor.Blazor.Web.ReduxDevTools;
 using FluxorRP.Shared.Store.CaptainSwordee;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 

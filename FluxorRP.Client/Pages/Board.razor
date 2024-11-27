@@ -8,30 +8,65 @@
 @inject IState<BoardState> BoardState
 @inject IState<GifState> GifState
 
+@using FluxorRP.Shared.Store.ListCharacter
+@using FluxorRP.Shared.Store.ListMonster
+
+@inject IDispatcher Dispatcher
+@inject IState<ListCharacterState> CharactersState
+@inject IState<ListMonsterState> MonstersState
+
+
 <PageTitle>Party</PageTitle>
 
 @if (!BoardState.Value.end)
 {
-    <div class="columns-container">
-        <div class="column">
-                <FluxorRP.Client.Component.Character />
-        </div>
-        <div class="column">
-                <FluxorRP.Client.Component.DiceLauncher />
-        </div>
-        <div class="column">
-                <FluxorRP.Client.Component.Monster />
-        </div>
+    @if (CharactersState.Value.selectedValue != 0 && MonstersState.Value.selectedValue != 0)
+    {
+        <div class="columns-container">
+            <div class="column">
+                    <FluxorRP.Client.Component.Character />
+            </div>
+            <div class="column">
+                    <FluxorRP.Client.Component.DiceLauncher />
+            </div>
+            <div class="column">
+                    <FluxorRP.Client.Component.Monster />
+            </div>
         
-    </div>
-    @if (@GifState.Value.IsImageVisible)
+        </div>
+        @if (@GifState.Value.IsImageVisible)
+        {
+            <div class="column">
+                <img src="images/gameover.gif" />
+            </div>
+        }
+    }
+    else
     {
         <div class="column">
-            <img src="images/gameover.gif" />
+            @foreach (var Character in CharactersState.Value.Characters)
+            {
+                <div class="form-check">
+                    <input class="form-check-check" value="@Character.Id" type="checkbox" @onclick="() => SelectCharacter(Character.Id)"
+                           checked="@(CharactersState.Value.selectedValue == Character.Id)"></input>
+                    <label class="form-check-label">@Character.Name</label>
+                </div>
+            }
+        </div>
+        <div class="column">
+            @foreach (var Monster in MonstersState.Value.Monsters)
+            {
+                <div class="form-check">
+                    <input class="form-check-check" value="@Monster.Id" type="checkbox" @onclick="() => SelectMonster(Monster.Id)"
+                           checked="@(MonstersState.Value.selectedValue == Monster.Id)"></input>
+                    <label class="form-check-label">@Monster.Name</label>
+                </div>
+            }
         </div>
     }
-   
-} else
+
+} 
+else
 {
     <div>
         <strong>end of game</strong>
@@ -59,5 +94,13 @@
     private void Restart()
     {
         navigationManager.NavigateTo(navigationManager.Uri, true);
+    }
+    private void SelectCharacter(int id)
+    {
+        Dispatcher.Dispatch(new ListCharacterSelectAction(id));
+    }
+    private void SelectMonster(int id)
+    {
+        Dispatcher.Dispatch(new ListMonsterSelectAction(id));
     }
 }

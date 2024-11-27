@@ -1,4 +1,4 @@
 ﻿namespace FluxorRP.Shared.Store.Monster
 {
-    public record MonsterState(int health);
+    public record MonsterState(string name, int health);
 }
