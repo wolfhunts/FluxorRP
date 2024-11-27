@@ -106,7 +106,15 @@ img {
         font-family: 'Times New Roman', serif; /* Typo style ancien */
         color: #6b4f2b; /* Couleur marron */
     }
-
+.centered-container {
+    display: flex; /* Active le modèle Flexbox */
+    flex-direction: column; /* Dispose les éléments en colonne */
+    justify-content: center; /* Centre verticalement les éléments */
+    align-items: center; /* Centre horizontalement les éléments */
+    height: 100vh; /* Prend toute la hauteur de la fenêtre */
+    text-align: center; /* Centre le texte à l'intérieur des éléments */
+    gap: 15px; /* Ajoute un espacement entre les éléments */
+}
 /* Liens dans le style de jeu de rôle */
 a {
     color: #4e3b31;

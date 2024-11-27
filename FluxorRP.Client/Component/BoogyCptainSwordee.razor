@@ -1,0 +1,22 @@
+﻿    @using FluxorRP.Shared.Store.CaptainSwordee
+@inherits Fluxor.Blazor.Web.Components.FluxorComponent
+
+@inject IState<GifState> GifState
+
+
+@if (@GifState.Value.IsImageVisible)
+{
+    
+        <img src="images/gameover.gif" />
+    
+}
+else
+{
+    
+        <img src="images/staticCaptain.PNG" />
+    
+
+}
+@code {
+
+}

@@ -1,16 +1,12 @@
 ﻿@page "/"
 @using Fluxor
 @using FluxorRP.Shared.Store.Board
-@using FluxorRP.Shared.Store.CaptainSwordee
 @rendermode InteractiveWebAssembly
 @inherits Fluxor.Blazor.Web.Components.FluxorComponent
 @inject NavigationManager navigationManager
 @inject IState<BoardState> BoardState
-@inject IState<GifState> GifState
-
 @using FluxorRP.Shared.Store.ListCharacter
 @using FluxorRP.Shared.Store.ListMonster
-
 @inject IDispatcher Dispatcher
 @inject IState<ListCharacterState> CharactersState
 @inject IState<ListMonsterState> MonstersState
@@ -34,12 +30,6 @@
             </div>
         
         </div>
-        @if (@GifState.Value.IsImageVisible)
-        {
-            <div class="column">
-                <img src="images/gameover.gif" />
-            </div>
-        }
     }
     else
     {
@@ -70,24 +60,26 @@
 } 
 else
 {
-    <div>
-        <strong>end of game</strong>
-    </div>
+    <div class="centered-container">
+            <div>
+                <strong>end of game</strong>
+            </div>
 
-    <div>
-        @if (BoardState.Value.isPlayerWinner)
-        {
-            <strong>Player Wins</strong>
-        }
-        else
-        {
-            <strong>Monster Wins</strong>
-        }
+            <div>
+                @if (BoardState.Value.isPlayerWinner)
+                {
+                    <strong>Player Wins</strong>
+                }
+                else
+                {
+                    <strong>Monster Wins</strong>
+                }
+            </div>
+            <div>
+                <img src="images/dance.gif" />
+            </div>
+            <button @onclick="Restart">Jouer à nouveau</button>
     </div>
-    <div>
-        <img src="images/dance.gif" />
-    </div>
-    <button @onclick="Restart">Jouer à nouveau</button>
 }
 
 
