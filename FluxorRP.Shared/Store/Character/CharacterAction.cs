@@ -7,6 +7,19 @@
             Value = value;
         }
 
-        public int Value { get; }
+        public int Value { get; } 
     }	
+    
+    public class CharacterLoadSelectedAction
+    {
+        public string Name { get; }
+        public int Health { get; }
+        public int Strength { get; }
+        public CharacterLoadSelectedAction(string name, int health, int strength)
+        {
+            Name = name;
+            Health = health;
+            Strength = strength;
+        }
+    }
 }
