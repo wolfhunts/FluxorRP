@@ -6,23 +6,59 @@
 @inject NavigationManager navigationManager
 @inject IState<BoardState> BoardState
 
+@using FluxorRP.Shared.Store.ListCharacter
+@using FluxorRP.Shared.Store.ListMonster
+
+@inject IDispatcher Dispatcher
+@inject IState<ListCharacterState> CharactersState
+@inject IState<ListMonsterState> MonstersState
+
+
 <PageTitle>Party</PageTitle>
 
 @if (!BoardState.Value.end)
 {<div class="columns-container">
-    <div class="column">
-            <FluxorRP.Client.Component.Character />
+        @if (CharactersState.Value.selectedValue != 0 && MonstersState.Value.selectedValue != 0)
+        {
+            <div class="column">
+                <FluxorRP.Client.Component.Character />
+            </div>
+            <div class="column">
+                <FluxorRP.Client.Component.DiceLauncher />
+            </div>
+            <div class="column">
+                <FluxorRP.Client.Component.Monster />
+            </div>
+        }
+        else
+        {
+            <div class="column">
+                @foreach (var Character in CharactersState.Value.Characters)
+                {
+                    <div class="form-check">
+                        <input class="form-check-check" value="@Character.Id" type="checkbox" @onclick="() => SelectCharacter(Character.Id)"
+                        checked="@(CharactersState.Value.selectedValue == Character.Id)"
+                        ></input>
+                        <label class="form-check-label">@Character.Name</label>
+                    </div>
+                }
+            </div>
+            <div class="column">
+                @foreach (var Monster in MonstersState.Value.Monsters)
+                {
+                    <div class="form-check">
+                        <input class="form-check-check" value="@Monster.Id" type="checkbox" @onclick="() => SelectMonster(Monster.Id)"
+                        checked="@(MonstersState.Value.selectedValue == Monster.Id)"
+                        ></input>
+                        <label class="form-check-label">@Monster.Name</label>
+                    </div>
+                }
+            </div>
+        }
     </div>
-    <div class="column">
-            <FluxorRP.Client.Component.DiceLauncher />
-    </div>
-    <div class="column">
-            <FluxorRP.Client.Component.Monster />
-    </div>
-</div>
-   
-    
-   
+
+
+
 } else
 {
     <div>
@@ -51,5 +87,13 @@
     private void Restart()
     {
         navigationManager.NavigateTo(navigationManager.Uri, true);
+    }
+    private void SelectCharacter(int id)
+    {
+        Dispatcher.Dispatch(new ListCharacterSelectAction(id));
+    }
+    private void SelectMonster(int id)
+    {
+        Dispatcher.Dispatch(new ListMonsterSelectAction(id));
     }
 }
